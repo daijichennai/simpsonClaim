@@ -1,0 +1,143 @@
+ <ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Material Details</ion-title>
+    <ion-buttons end>
+      <button text-right ion-button icon-only (click)="goToHome()">
+          <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-content">
+  <ion-list>
+    <ion-card style="border-radius: 3px;">
+      <ion-grid *ngIf="RefNo==undefined">
+        <ion-card-content style="color: #333333;">
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>No </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{InvoiceNo}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Claim Date</strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7>{{createdDate| date:'d MMM yyyy'}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Item Code </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{MaterialCode}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Item Name </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{MaterialName}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Quantity </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{MaterialQty}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Wrty Type </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{MaterialWarrenty}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Remarks </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7>{{Remarks}}</ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-grid>
+
+      <ion-grid *ngIf="RefNo!=undefined">
+        <ion-card-content style="color: #333333;">
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>No </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{InvoiceNo}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Date</strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7>{{createdDate| date:'d MMM yyyy'}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Item Code </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{MaterialCode}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Item Name </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{MaterialName}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Quantity </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{MaterialQty}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Wrty Type </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{MaterialWarrenty}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Status </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7>{{claimStatus}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Remarks </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7>{{Remarks}}</ion-col>
+          </ion-row>
+
+        </ion-card-content>
+      </ion-grid>
+    </ion-card>
+  </ion-list>
+  <ion-list *ngFor="let item of reviewDetJson; index as j">
+    <ion-card style="border-radius: 7px;">
+      <ion-grid> 
+        <ion-card-content style="color: #333333; margin-top:-30px;">
+          <ion-col col-4></ion-col>
+
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Tracking </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7>{{item.tracking_id}}</ion-col>
+          </ion-row>
+
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Date</strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7>{{item.created_date|date:'d MMM yyyy'}}</ion-col>
+          </ion-row>
+
+          <ion-row class="bottomRow" *ngIf="item.warranty_claim_type!=''">
+            <ion-col col-4><strong>Type </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{item.warranty_claim_type}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow" *ngIf="item.warranty_claim_type==''">
+            <ion-col col-4><strong>Type </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> --NA--</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow" *ngIf="item.claim_status=='Documents Needed'">
+            <ion-col col-4><strong>Status </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{item.claim_status}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow" *ngIf="item.claim_status!='Documents Needed'">
+            <ion-col col-4><strong>Status </strong></ion-col>
+            <ion-col col-1> :</ion-col>
+            <ion-col col-7> {{item.claim_status}}</ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-grid>
+    </ion-card>
+  </ion-list>

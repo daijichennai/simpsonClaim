@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Scan Coupon</ion-title>
+        <ion-buttons end>
+            <button text-right ion-button icon-only (click)="goToHome()">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding style="font-family: Poppins-Regular;">
+    <div text-center style="color: #000;">
+        <img src="../../assets/imgs/qr.svg" style="height:70%; width:70%" />
+    </div>
+    <h1>
+        <button ion-button id="Scanbtn" style="color:#FFFFFF" full (click)="scanCouponQrCode()">SCAN QR CODE</button>
+    </h1>
+
+    <!-- <p [innerHTML]="scannedData"></p> -->
+</ion-content>

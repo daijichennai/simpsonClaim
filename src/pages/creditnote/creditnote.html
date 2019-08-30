@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar color="primary" >
+    <ion-title>Credit Note</ion-title>
+    <ion-buttons end>
+      <button text-right ion-button icon-only (click)="goToHome()">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<div *ngIf="isCreditAvailable" text-center padding-top>
+  <b class="error-box" style="font-size: 24px;">No Record Found</b>
+</div>
+ <ion-list *ngFor="let i of creditNoteJson">
+   <ion-card >
+     <ion-grid>
+       <ion-card-content style="color: #333333;">
+         <ion-row class="bottomRow">
+           <ion-col col-4><strong>No </strong></ion-col>
+           <ion-col col-1 text-center> : </ion-col>
+           <ion-col col-7>{{i.invoice_no}}</ion-col>
+         </ion-row>
+         <ion-row class="bottomRow">
+           <ion-col col-4><strong>Date </strong></ion-col>
+           <ion-col col-1 text-center> : </ion-col>
+           <ion-col col-7>{{i.invoice_date|date}}</ion-col>
+         </ion-row>
+         <ion-row class="bottomRow">
+           <ion-col col-4><strong>Item Code </strong></ion-col>
+           <ion-col col-1 text-center> : </ion-col>
+           <ion-col col-7>{{i.item_code}}</ion-col>
+         </ion-row>
+         <ion-row class="bottomRow">
+           <ion-col col-4><strong>Item Name </strong></ion-col>
+           <ion-col col-1 text-center> : </ion-col>
+           <ion-col col-7 text-wrap>{{i.item_name}}</ion-col>
+         </ion-row>
+         <ion-row class="bottomRow">
+           <ion-col col-4><strong>Quantity </strong></ion-col>
+           <ion-col col-1 text-center> : </ion-col>
+           <ion-col col-7>{{i.item_claim_qty}}</ion-col>
+         </ion-row>
+         <ion-row class="bottomRow">
+           <ion-col col-4><strong>Unit Price </strong></ion-col>
+           <ion-col col-1 text-center> : </ion-col>
+           <ion-col col-7>{{myFunc.convertINR(i.unit_price)}}</ion-col>
+         </ion-row>
+         <ion-row class="bottomRow">
+           <ion-col col-4><strong>Tax Value </strong></ion-col>
+           <ion-col col-1 text-center> : </ion-col>
+           <ion-col col-7 text-wrap>{{i.tax_value}}</ion-col>
+         </ion-row>
+         <ion-row class="bottomRow">
+           <ion-col col-4><strong>Amount </strong></ion-col>
+           <ion-col col-1 text-center> : </ion-col>
+           <ion-col col-7>{{myFunc.convertINR(i.total_amount)}}</ion-col>
+         </ion-row>
+       </ion-card-content>
+     </ion-grid>
+   </ion-card>
+ </ion-list>
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Change Password</ion-title>
+    <ion-buttons end>
+      <button text-right ion-button icon-only (click)="goToHome()">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="authForm" (ngSubmit)="changePwdFn()">
+
+    <ion-item>
+      <ion-label floating>Current Password</ion-label>
+      <ion-input type="{{type}}" value="" [(ngModel)]="currentPassword" (blur)='chkCurrentPWD()'
+        [formControl]="authForm.controls['currentPWD']">
+      </ion-input>
+       <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
+         <ion-icon name="ios-eye-off-outline"></ion-icon>
+       </button>
+       <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
+         <ion-icon name="ios-eye-outline"></ion-icon>
+       </button>
+    </ion-item><br />
+    <div class="error-box"
+      *ngIf="authForm.controls['currentPWD'].hasError('required') && authForm.controls['currentPWD'].touched">
+      &nbsp;* Current Password is required!</div>
+
+    <ion-item>
+
+      <ion-label floating>New Password</ion-label>
+      <ion-input type="{{type}}" name="password" value="" [(ngModel)]="newPassword"
+        [formControl]="authForm.controls['newPWD']"></ion-input>
+     
+    </ion-item><br />
+    <div class="error-box"
+      *ngIf="authForm.controls['newPWD'].hasError('required') && authForm.controls['newPWD'].touched">
+      &nbsp;* New Password is required!</div>
+      <div class="error-box" *ngIf="authForm.controls['newPWD'].hasError('minlength') &&
+          authForm.controls['newPWD'].touched">
+        * Password Should not be less than 8 characters</div>
+
+
+    <ion-item>
+      <ion-label floating>Confirm Password</ion-label>
+      <ion-input type="{{type}}" value="" [(ngModel)]="confirmPassword" [formControl]="authForm.controls['confirmPWD']">
+      </ion-input>
+    </ion-item><br />
+    <div class="error-box"
+      *ngIf="authForm.controls['confirmPWD'].hasError('required') && authForm.controls['confirmPWD'].touched">
+      &nbsp;* Confirm Password is required!</div>
+
+    <button type="submit" ion-button full [disabled]="!authForm.valid">Submit</button>
+
+  </form>
+</ion-content>

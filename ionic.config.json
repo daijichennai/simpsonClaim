@@ -1,0 +1,7 @@
+{
+  "name": "warrantyclaim",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

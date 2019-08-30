@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>List Invoice</ion-title>
+    <ion-buttons end>
+      <button text-right ion-button icon-only (click)="goToHome()">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar showCancelButton="true" (ionInput)="onSearch($event)"
+      placeholder="Search By Invoice No"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="isInvAvailable" text-center padding-top>
+    <b class="error-box" style="font-size: 24px;">No Record Found</b>
+  </div>
+  <ion-card *ngFor="let i of invoiceJson" [ngClass]="i.claim_status == 'Partially Cancelled' ? 'boxThis': ''">
+    <ion-item (click)="goToInvoiceDetails(i.invoice_no)">
+      <h2><span><b>No : </b></span> {{i.invoice_no}}</h2>
+      <h2><span><b>Invoice Date : </b></span> <span
+          style="padding-left:10px;">{{i.invoice_date | date:'d MMM yyyy'}}</span></h2>
+
+      <div><b>Status : </b>
+        <ion-badge *ngIf="i.claim_status == null" color="primary">N/A</ion-badge>
+        <ion-badge *ngIf="i.claim_status == 'Pending'" color="pink">Pending</ion-badge>
+        <ion-badge *ngIf="i.claim_status == 'Waiting for Approval'" color="yellow">Waiting for Approval</ion-badge>
+        <ion-badge *ngIf="i.claim_status == 'Documents Needed'" color="violet">Documents Needed</ion-badge>
+        <ion-badge *ngIf="i.claim_status == 'Resend Clear Document'" color="blue">Resend Clear Document</ion-badge>
+        <ion-badge *ngIf="i.claim_status == 'Approval Pending'" color="danger">Approval Pending</ion-badge>
+        <ion-badge *ngIf="i.claim_status == 'Processing'" color="gary">Processing</ion-badge>
+        <ion-badge *ngIf="i.claim_status == 'Approved'" color="secondary">Approved</ion-badge>
+        <ion-badge *ngIf="i.claim_status == 'Cancelled'" color="danger">Cancelled</ion-badge>
+
+        <ion-badge *ngIf="i.claim_status == 'Completed' || i.claim_status == 'Documents Uploaded'" color="secondary">
+          {{i.claim_status}}</ion-badge>
+
+        <ion-badge
+          *ngIf="i.claim_status=='Material Received' || i.claim_status=='Sales Person Approved'"
+          color="blue">{{i.claim_status}}</ion-badge>
+
+        <ion-badge *ngIf="i.claim_status == 'Partially Cancelled'" color="danger">{{i.claim_status}}</ion-badge>
+
+      </div>
+
+    </ion-item>
+  </ion-card>
+</ion-content>

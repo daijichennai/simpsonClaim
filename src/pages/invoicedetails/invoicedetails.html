@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Invoice Details</ion-title>
+    <ion-buttons end>
+      <button text-right ion-button icon-only (click)="goToHome()">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding >
+
+  <ion-card *ngFor="let i of invDetJson; first as isFirst" ion-text color="light">
+    <div *ngIf="isFirst" class="ion-card">
+      <ion-row>
+        <ion-col col-12 text-center>Invoice No - {{i.invoice_no}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12 text-center>Invoice Date - {{i.invoice_date | date:'d MMM yyyy'}}</ion-col>
+      </ion-row>
+    </div>
+  </ion-card>
+  <ion-list *ngFor="let i of invDetJson;" >
+    <ion-card style="border-radius: 3px;">
+      <ion-grid>
+        <ion-card-content style="color: #333333;">
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Item Code </strong></ion-col>
+            <ion-col col-1 text-center> : </ion-col>
+            <ion-col col-7 text-wrap>{{i.part_no}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Item Name </strong></ion-col>
+            <ion-col col-1 text-center> : </ion-col>
+            <ion-col col-7>{{i.part_description}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Unit Price </strong></ion-col>
+            <ion-col col-1 text-center> : </ion-col>
+            <ion-col col-7> Rs. {{myFunc.convertINR(i.unit_price)}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Invoice Qty </strong></ion-col>
+            <ion-col col-1 text-center> : </ion-col>
+            <ion-col col-7> {{i.invoice_quantity}}</ion-col>
+          </ion-row>
+          <ion-row class="bottomRow">
+            <ion-col col-4><strong>Amount </strong></ion-col>
+            <ion-col col-1 text-center> : </ion-col>
+            <ion-col col-7> Rs. {{myFunc.convertINR(i.invoice_quantity * i.unit_price)}}</ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-grid>
+    </ion-card>
+
+  </ion-list>
+  <ion-card *ngFor="let item of invDetJson; first as isFirst" class="ion-card" ion-text color="light">
+    <ion-row *ngIf="isFirst">
+      <ion-col col-12 text-center>Total Amount - Rs. {{total}}</ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

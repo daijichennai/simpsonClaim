@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar color="primary" hideBackButton="true">
+        <ion-title text-center>Login</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="login-content">
+    <ion-row class="logo-row">
+        <ion-col>
+            <img src="../../assets/imgs/simpson.jpg" />
+        </ion-col>
+    </ion-row>
+
+    <div style="position:fixed;width:100%">
+        <ion-card padding>
+            <form [formGroup]="authForm" (ngSubmit)="chkLogin()">
+                <ion-item>
+                    <ion-label floating>Username</ion-label>
+                    <ion-input type="text" [(ngModel)]="userName" value="" [formControl]="authForm.controls['chkUserName']" [ngClass]="{'error-border':!authForm.controls['chkUserName'].valid}"></ion-input>
+                </ion-item><br />
+                <div class="error-box" *ngIf="authForm.controls['chkUserName'].hasError('required') && authForm.controls['chkUserName'].touched">
+                    &nbsp;&nbsp;* User Name is required!
+                </div>
+                <div class="error-box" *ngIf="authForm.controls['chkUserName'].hasError('minlength') &&
+          authForm.controls['chkUserName'].touched">
+                    * User Name Should not be less than 8 characters</div>
+
+                <ion-item>
+                    <ion-label floating>Password</ion-label>
+                    <ion-input type="{{type}}" name="password" value="" [(ngModel)]="userPassword" [formControl]="authForm.controls['chkUserPassword']"></ion-input>
+                    <button *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
+            <ion-icon name="ios-eye-off-outline"></ion-icon>
+          </button>
+                    <button *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
+            <ion-icon name="ios-eye-outline"></ion-icon>
+          </button>
+                </ion-item><br />
+                <div class="error-box" *ngIf="authForm.controls['chkUserPassword'].hasError('required') && authForm.controls['chkUserPassword'].touched">
+                    &nbsp;&nbsp;* Password is required!
+                </div>
+
+                <div class="error-box" *ngIf="authForm.controls['chkUserPassword'].hasError('minlength') &&
+          authForm.controls['chkUserPassword'].touched">
+                    * Password Should not be less than 8 characters</div>
+                <button type="submit" ion-button full [disabled]="!authForm.valid">Login</button>
+            </form>
+            <button ion-button full clear padding-top (click)="goToRegister()">Create New Account</button>
+        </ion-card>
+    </div>
+</ion-content>

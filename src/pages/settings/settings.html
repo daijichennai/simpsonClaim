@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Settings</ion-title>
+    <ion-buttons end>
+      <button text-right ion-button icon-only (click)="goToHome()">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item (click)="goToChangePwd()" >
+      <ion-icon ios="ios-key" md="md-key" item-left></ion-icon>
+      Change Password
+    </ion-item>
+    <ion-item (click)="logOutFn()" >
+      <ion-icon ios="ios-log-out" md="md-log-out" item-left></ion-icon>
+      Log Out
+    </ion-item>
+  </ion-list>
+</ion-content>

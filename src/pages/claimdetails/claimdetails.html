@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-navbar color="primary" >
+    <ion-title>Claim Details</ion-title>
+    <ion-buttons end>
+      <button text-right ion-button icon-only (click)="goToHome()">
+          <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="bg-content">
+  <ion-list *ngIf="claimDetJson!=''">
+    <ion-list *ngFor="let i of claimDetJson; index as j">
+      <ion-card style="border-radius: 3px;">
+        <ion-grid>
+          <ion-card-content>
+            <ion-row class="bottomRow">
+              <ion-col col-4><strong>No </strong></ion-col>
+              <ion-col col-1 text-center> : </ion-col>
+              <ion-col col-7> {{i.invoice_no}}</ion-col>
+            </ion-row>
+            <ion-row class="bottomRow">
+              <ion-col col-4><strong>Claim Date</strong></ion-col>
+              <ion-col col-1 text-center> : </ion-col>
+              <ion-col col-7>{{i.created_date| date:'d MMM yyyy'}}</ion-col>
+            </ion-row>
+            <ion-row class="bottomRow">
+              <ion-col col-4><strong>Item Code </strong></ion-col>
+              <ion-col col-1 text-center> : </ion-col>
+              <ion-col col-7> {{i.item_code}}</ion-col>
+            </ion-row>
+            <ion-row class="bottomRow">
+              <ion-col col-4><strong>Item Name </strong></ion-col>
+              <ion-col col-1 text-center> : </ion-col>
+              <ion-col col-7> {{i.item_name}}</ion-col>
+            </ion-row>
+            <ion-row class="bottomRow">
+              <ion-col col-4><strong>Quantity </strong></ion-col>
+              <ion-col col-1 text-center> : </ion-col>
+              <ion-col col-7> {{i.item_qty}}</ion-col>
+            </ion-row>
+            <ion-row class="bottomRow">
+              <ion-col col-4><strong>Wrty Type </strong></ion-col>
+              <ion-col col-1 text-center> : </ion-col>
+              <ion-col col-7> {{i.warranty_request_type}}</ion-col>
+            </ion-row>
+            <ion-row class="bottomRow">
+              <ion-col col-4><strong>Status </strong></ion-col>
+              <ion-col col-1 text-center> : </ion-col>
+              <ion-col col-7>{{i.claim_status}}</ion-col>
+            </ion-row>
+            
+            <ion-row class="bottomRow">
+              <ion-col >
+                <button ion-button round (click)="goToReviewPage(i.claim_details_id,'Server')">
+                  <span class="text" style="color: #fff; font-size:12px;">VIEW</span>
+                </button>
+              </ion-col>
+
+              <ion-col *ngIf="i.claim_status ==='Pending' || i.claim_status ==='Documents Needed' || i.claim_status ==='Resend Clear Document'"
+                (click)="UploadData(i.claim_details_id)">
+                <button ion-button round>
+                  <span style="color: #fff; font-size:12px;">ADD Docx.</span>
+                </button>
+              </ion-col>
+            </ion-row>
+
+          </ion-card-content>
+        </ion-grid>
+      </ion-card>
+    </ion-list>
+  </ion-list>
+</ion-content>

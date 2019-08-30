@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Claim Request</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="Review(TotSum)">
+        <ion-icon class="iccon-class" name="cart"><span
+            style="position:absolute; top:-1px; left:10px; font-size:20px; color:#000 !important"><b>{{TotSum}}</b></span>
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="font-family: Poppins-Regular;">
+  <p style="color: #000; font-size:12px;" text-center> * Click CART icon to REVIEW CLAIM Items * </p>
+  <p style="color: #000; font-size:12px;" text-center> * CLAIM Applicable Upto 15 Days From Invoice Date* </p>
+  <p style="color: #000; font-size:12px;" text-center> * Multiple ITEM For Single Invoice Can be Scan, But Multiple
+    INVOICE Can't Be scanned* </p>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-label style=" font-size:18px;" color="danger" text-wrap>Item not match with previous Invoice..!</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <h1>
+    <button ion-button id="Scanbtn" style="color:#FFFFFF" full (click)="PageChange()">QR Scan</button>
+  </h1>
+
+  <p style="color: #000; font-size:12px;" text-center> * Click QR SCAN button to scan material QR Code * </p>
+</ion-content>

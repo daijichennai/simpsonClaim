@@ -1,0 +1,131 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Claim Review</ion-title>
+        <ion-buttons end>
+            <button text-right ion-button icon-only (click)="goToHome()">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="bg-content">
+    <button ion-button full (click)="CreateClaim()" *ngIf="ServerValue==0">
+    <span class="text" style="color: #fff; font-size:12px;font-family: Poppins-Regular !important;">CREATE CLAIM</span>
+  </button>
+    <ion-list *ngIf="ServerValue==0">
+        <ion-list *ngFor="let item of warrentyData; index as i">
+            <ion-card style="border-radius: 7px;">
+                <ion-grid>
+                    <ion-card-content style="color: #333333;">
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>No </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.InvoiceNo}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Date </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.InvoiceDate|date:'d MMM yyyy'}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Item Code </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.MaterialCode}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Item Name </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.MaterialName}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Quantity </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.Quantity}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Wrty Type </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.warrenty}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col (click)="goToReviewDetails(item.rowid,'Local')">
+                                <button ion-button round>
+                  <span class="text"
+                    style="color: #fff; font-size:12px;font-family: Poppins-Regular !important;">VIEW</span>
+                </button>
+                            </ion-col>
+                            <ion-col (click)="DeleteData(item.rowid)">
+                                <button ion-button round>
+                  <span class="text"
+                    style="color: #fff; font-size:12px;font-family: Poppins-Regular !important;">REMOVE</span>
+                </button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-grid>
+            </ion-card>
+        </ion-list>
+    </ion-list>
+    <button ion-button full (click)="CreateClaim()" *ngIf="ServerValue==0">
+    <span class="text" style="color: #fff; font-size:12px;font-family: Poppins-Regular !important;">CREATE CLAIM</span>
+  </button>
+    <ion-fab bottom right *ngIf="ServerValue==0" color="danger">
+        <ion-chip color="light" (click)="AddMore('1')">
+            <ion-label>ADD MORE ITEM</ion-label>
+            <ion-icon name="add" color="danger"></ion-icon>
+        </ion-chip>
+    </ion-fab>
+    <ion-list *ngIf="ServerValue!=0">
+        <ion-list *ngFor="let item of reviewJson; index as j">
+            <ion-card style="border-radius: 7px;">
+                <ion-grid>
+                    <ion-card-content style="color: #333333;">
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>No </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.invoice_no}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Date </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.invoice_date|date:'d MMM yyyy'}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Item Code </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.item_code}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Item Name </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.item_name}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Quantity </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.item_qty}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-4><strong>Wrty Type </strong></ion-col>
+                            <ion-col col-1> :</ion-col>
+                            <ion-col col-7> {{item.warranty_request_type}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col (click)="goToReviewDetails(item.claim_details_id,'Server')">
+                                <button ion-button round>
+                  <span class="text" style="color: #fff; font-size:12px;">VIEW</span>
+                </button>
+                            </ion-col>
+                            <ion-col (click)="UploadData(item.claim_details_id,item.claim_master_id)">
+                                <button ion-button round>
+                  <span style="color: #fff; font-size:12px;">ADD Docx.</span>
+                </button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-grid>
+            </ion-card>
+        </ion-list>
+    </ion-list>
+</ion-content>

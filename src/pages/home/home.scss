@@ -1,0 +1,27 @@
+page-home {
+    .card {
+        margin-left:-2px;
+        height: 100%;
+        width: 100%;
+        border-radius:5px;
+    }
+    .title
+    {
+        font-family: Poppins-Medium !important;
+    }
+    .bg-content
+    {
+        background-color: #E8E8E8;
+        font-family: Poppins-Regular !important;
+    }
+
+    .myCard{
+        border:  3px solid #0d3e87;  //#2e2eb8; //#ff4d94;          //#660066;                       //#ff4d94;
+        border-radius: 20px;
+    }
+    
+    .myImage img {
+        min-height: 150px;
+        background-color: #eeeeee;
+      }
+}

@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Coupon Details View</ion-title>
+        <ion-buttons end>
+            <button text-right ion-button icon-only (click)="goToHome()">
+            <ion-icon ios="ios-home" md="md-home"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="isAvailable" text-center padding-top>
+        <b class="error-box" style="font-size: 24px;">No Record Found</b>
+    </div>
+    <div *ngIf="isAvailable ===false ">
+        <ion-list *ngFor="let cd of couponDetailsJson;">
+            <ion-card style="border-radius: 3px;">
+                <ion-grid>
+                    <ion-card-content style="color: #333333;">
+                        <ion-row class="bottomRow">
+                            <ion-col col-5><strong>Invoice No </strong></ion-col>
+                            <ion-col col-1 text-center> : </ion-col>
+                            <ion-col col-6 text-wrap>{{cd.invoice_no}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-5><strong>Invoice Date </strong></ion-col>
+                            <ion-col col-1 text-center> : </ion-col>
+                            <ion-col col-6>{{cd.invoice_date | date:'d MMM yyyy'}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-5><strong>Coupon Serial No </strong></ion-col>
+                            <ion-col col-1 text-center> : </ion-col>
+                            <ion-col col-6>{{cd.serial_no}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-5><strong>Coupon Amount </strong></ion-col>
+                            <ion-col col-1 text-center> : </ion-col>
+                            <ion-col col-6> Rs. {{cd.amount}}</ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-5><strong>Coupon Status </strong></ion-col>
+                            <ion-col col-1 text-center> : </ion-col>
+                            <ion-col col-6>
+                                <ion-badge *ngIf="cd.coupon_status_desc =='Valid'" color="secondary">
+                                    {{cd.coupon_status_desc}}
+                                </ion-badge>
+                                <ion-badge *ngIf="cd.coupon_status_desc =='Invalid'" color="secondary">
+                                    {{cd.coupon_status_desc}}
+                                </ion-badge>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="bottomRow">
+                            <ion-col col-5><strong>Dealer Code</strong></ion-col>
+                            <ion-col col-1 text-center> : </ion-col>
+                            <ion-col col-6> {{cd.dealer_code}}</ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                </ion-grid>
+            </ion-card>
+        </ion-list>
+        <ion-list *ngIf="mode ==='couponScan' && isAvailable ===false">
+            <button padding-left padding-right ion-button full (click)="createClaim()">Create Claim</button>
+        </ion-list>
+    </div>
+</ion-content>

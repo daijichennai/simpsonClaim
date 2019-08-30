@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Coupon List</ion-title>
+        <ion-buttons end>
+            <button text-right ion-button icon-only (click)="goToHome()">
+        <ion-icon ios="ios-home" md="md-home"></ion-icon>
+      </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="isAvailable" text-center padding-top>
+        <b class="error-box" style="font-size: 24px;">No Record Found</b>
+    </div>
+    <div *ngIf="isAvailable ===false ">
+        <ion-card *ngFor="let cl of couponListJson">
+            <div (click)="goToClaimDetails(cl.serial_no)">
+                <table>
+                    <tr>
+                        <td><b>Coupon No</b></td>
+                        <td>:</td>
+                        <td>{{cl.serial_no}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Amount </b></td>
+                        <td>:</td>
+                        <td>Rs. {{cl.amount}}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Status </b></td>
+                        <td>:</td>
+                        <td>
+                            <ion-badge *ngIf="cl.coupon_status_desc =='Valid'" color="secondary">
+                                {{cl.coupon_status_desc}}
+                            </ion-badge>
+                            <ion-badge *ngIf="cl.coupon_status_desc =='Invalid'" color="secondary">
+                                {{cl.coupon_status_desc}}
+                            </ion-badge>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- <ion-item (click)="goToClaimDetails(cl.serial_no)">
+                <h2><span><b>Coupon No : </b></span> </h2>
+                <h2><span><b>Amt : </b></span> <span style="padding-left:10px;">{{cl.amount}}</span></h2>
+                <div><b>Status : </b>
+                    <ion-badge color="primary">{{cl.coupon_status}}</ion-badge>
+                </div>
+            </ion-item> -->
+        </ion-card>
+    </div>
+
+</ion-content>

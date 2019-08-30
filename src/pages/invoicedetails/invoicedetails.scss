@@ -1,0 +1,36 @@
+page-invoicedetails {
+    .card {
+        margin-left:-2px;
+        width: 100%;
+        position: relative;
+        text-align: left;
+        margin-top:-9.5px;    
+    }
+    .ion-card {
+            background-color: #0b2d60 !important;
+            color: #ffffff !important;
+        }
+    .ion-content
+    {
+    width: 100%;
+    }
+    .title
+    {
+        font-family: Poppins-Medium !important;
+    }
+    .bg-content
+    {
+        background-color: #E8E8E8;
+        font-family: Poppins-Regular !important;
+    }
+    .bottomRow
+    {
+      margin-top: -16px;
+      padding-top:12px;
+    }
+    .grid{
+      margin: -5px;
+      width: 100%;
+    }
+
+}

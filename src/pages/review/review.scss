@@ -1,0 +1,35 @@
+page-review {
+  .card {
+    margin-left: -2px;
+    height: 100%;
+    width: 100%;
+    margin-top: -10px;
+  }
+
+  .title {
+    font-family: Poppins-Medium !important;
+  }
+
+  .bg-content {
+    background-color: #E8E8E8;
+    font-family: Poppins-Regular !important;
+    width: 100%;
+  }
+
+  .iccon-class {
+    display: inline-block;
+    font-size: 20px;
+    vertical-align: middle;
+  }
+
+  .text {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: PT_Serif-Web-Regular !important;
+  }
+
+  .bottomRow {
+    margin-top: -18px;
+    padding-top: 12px;
+  }
+}
